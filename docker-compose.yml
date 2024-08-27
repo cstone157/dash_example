@@ -1,0 +1,12 @@
+services:
+  # Custom datascience-notebook, for us to use
+  jupyter_dashboard:
+    build: .
+    image: cstone157/jupyter_dashboard
+    volumes:
+    - ./work:/home/jovyan/work
+    ports:
+    - 8890:8888
+    - 8891:8891
+    - 8050:8050
+    container_name: jupyter_dashboard
