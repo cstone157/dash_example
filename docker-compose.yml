@@ -1,7 +1,7 @@
 services:
   # Custom datascience-notebook, for us to use
   jupyter_dashboard:
-    build: .
+    build: ./jupyter/
     image: cstone157/jupyter_dashboard
     volumes:
     - ./work:/home/jovyan/work
