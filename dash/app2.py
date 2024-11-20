@@ -1,3 +1,5 @@
+## dash_design_kit seems to be commercial package, doesn't really work without a liscense
+
 # Import packages
 from dash import Dash, html, dash_table, dcc, callback, Output, Input
 import pandas as pd
