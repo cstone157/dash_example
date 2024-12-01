@@ -12,7 +12,7 @@ df = pd.DataFrame({'data': data})
 app = dash.Dash(__name__)
 
 app.layout = html.Div([
-    html.H1("Interactive Histogram"),
+    html.H1("Interactive Dashboard v2"),
     html.P("Adjust the number of bins using the slider below."),
     dcc.Slider(
         id='bin-slider',
@@ -34,6 +34,8 @@ def update_histogram(num_bins):
     fig = px.histogram(df, x='data', nbins=num_bins, title=f'Histogram with {num_bins} Bins')
     return fig
 
+
+server = app.server
 
 if __name__ == '__main__':
     app.run_server(debug=True)
