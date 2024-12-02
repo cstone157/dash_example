@@ -1,5 +1,5 @@
 import dash
-from dash import dcc, html, Input, Output
+from dash import Dash, dcc, html, Input, Output
 import plotly.express as px
 import pandas as pd
 import numpy as np
@@ -9,7 +9,7 @@ np.random.seed(42)  # for reproducibility
 data = np.random.randn(500)
 df = pd.DataFrame({'data': data})
 
-app = dash.Dash(__name__)
+app = Dash(__name__, use_pages=True)
 
 app.layout = html.Div([
     html.H1("Interactive Dashboard v2"),
@@ -23,6 +23,12 @@ app.layout = html.Div([
         step=1
     ),
     dcc.Graph(id='histogram'),
+    html.Div([
+        html.Div(
+            dcc.Link(f"{page['name']} - {page['path']}", href=page["relative_path"])
+        ) for page in dash.page_registry.values()
+    ]),
+    dash.page_container
 ])
 
 
@@ -33,7 +39,6 @@ app.layout = html.Div([
 def update_histogram(num_bins):
     fig = px.histogram(df, x='data', nbins=num_bins, title=f'Histogram with {num_bins} Bins')
     return fig
-
 
 server = app.server
 
