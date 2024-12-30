@@ -1,6 +1,8 @@
 import dash
 from dash import Dash, html, dcc
 
+print("Starting Dash App")
+
 app = Dash(__name__, use_pages=True)
 
 app.layout = html.Div([
